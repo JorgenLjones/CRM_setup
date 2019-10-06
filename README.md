@@ -22,71 +22,69 @@ If you haven't used a terminal before the easiest way to transfer the code to Go
 
 #### Create a new project on script.google.com
 Log in with your preferred Google account and go to ![Google App Script](script.google.com). <br/>
-Create a new project by clicking "New script", and give the new project a descriptive name; for instance "CRMsystem" (name of file should _not_ contain spaces). <br/>
+Create a new project by clicking "New script", and give the new project a descriptive name; for instance "CRMsystem" (name of file should _not_ contain spaces).
 ![How to make a new project](images/newProject.png) <br/>
 
-Open the project and make an additional script inside the project, you should now have two scripts. Name these scripts "bundle" and "CRMsetup". They will automatically get the file ending ".gs". <br/>
+Open the project and make an additional script inside the project, you should now have two scripts. Name these scripts "bundle" and "CRMsetup". They will automatically get the file ending ".gs".
 ![How to make a new script](images/newScript.png) <br/>
 
-Make two additional HTML files and name them "datePickerNewMeeting" and "datePickerOldMeeting". They will automatically get the file ending ".html". <br/>
+Make two additional HTML files and name them "datePickerNewMeeting" and "datePickerOldMeeting". They will automatically get the file ending ".html".
 ![How to make a new HTML file](images/newHTMLFile.png) <br/>
 
-You should now have two scripts(.gs) and two html files(.html) like this listed on the left side: <br/>
+You should now have two scripts(.gs) and two html files(.html) like this listed on the left side:
 ![Pasted code in Google Apps Script](images/readyScript.png) <br/>
 
-Clear the files by marking and delete all default code from all four files. <br/>
-![Delete text from scripts](images/deleteTextScript.png) <br/>
+Clear the files by marking and delete all default code from all four files.
+![Delete text from scripts](images/deleteTextScript.png)
 ![Delete text from scripts](images/deleteText.png) <br/>
 
 #### Copy code from GitHub and paste on Google App Script
-Open the following files from [GitHub](https://github.com/EANorgeService/CRMsetup): bundle.js, CRMsetup.js, datePickerNewMeeting.html and datePickerOldMeeting.html, mark and copy all code from them and paste in each corresponding file you just created in Google App Script. Save both scripts and both html files. <br/>
+Open the following files from [GitHub](https://github.com/EANorgeService/CRMsetup): bundle.js, CRMsetup.js, datePickerNewMeeting.html and datePickerOldMeeting.html, mark and copy all code from them and paste in each corresponding file you just created in Google App Script. Save both scripts and both html files.
 ![Files to copy from GitHub](images/filesGitHub.png) <br/>
 
 ### Setup
 After copying and pasting all code from GitHub to Google App Script the CRM-system can be set up in a destination folder on your Google Drive.
 
 ### Step 1: Enable Advanced Drive Service
-Do the following in the project you just made in Google App Script: Click **Resources > Advanced Google Services** scroll down to **Drive API** and enable it. <br/>
+Do the following in the project you just made in Google App Script: Click **Resources > Advanced Google Services** scroll down to **Drive API** and enable it.
 ![Advanced Google Services](images/advancedService.png)
 
 ### Step 2: Add file ID with list of initial candidates to CRMsetup.gs
 Find or make a Google spreadsheet with a list of the names of the people you want to import to your CRM system. You can use a wider list of people and later choose who you specifically want to add as candidates to the system. <br/>
-See [this example](https://docs.google.com/spreadsheets/d/1PEZhv7JwFeFfu8oeloPuxFmHMNCop2YdguYI1G0g4io/edit?usp=sharing) of such a list, and use the example list if you are only testing the system. Your list should have the same structure as the example linked above. The script assumes that your list starts in cell A1. Now copy the ID between the last two backslashes in the URL of your list, as shown below. Do not include the backslashes. <br/>
-
+See [this example](https://docs.google.com/spreadsheets/d/1PEZhv7JwFeFfu8oeloPuxFmHMNCop2YdguYI1G0g4io/edit?usp=sharing) of such a list, and use the example list if you are only testing the system. Your list should have the same structure as the example linked above. The script assumes that your list starts in cell A1. Now copy the ID between the last two backslashes in the URL of your list, as shown below. Do not include the backslashes.
 ![How to find ID for member list](images/memberlistId.png)
 
-Go to the script called CRMsetup, and add the ID to **MEMBERLIST_ID**, add the ID between quotationmarks. The script will copy all information from your list and add it to the key sheet. br/>
-
+Go to the script called CRMsetup, and add the ID to **MEMBERLIST_ID**, add the ID between quotationmarks. The script will copy all information from your list and add it to the key sheet.
 ![Where to add ID for list of members](images/addMemberListId.png)
 
 Remember to not delete or overwrite the qoutationmakrs and save the script. <br/>
 
 ### Step 3: Add ID for destination folder to CRMsetup.gs
-Choose a secure location on Google Drive with the sharing settings of your liking (but your Google account must have full access). This will be the location of your CRM-system. Find the ID of that Google Drive folder. Copy this ID, do not include the backslashes. <br/>
+Choose a secure location on Google Drive with the sharing settings of your liking (but your Google account must have full access). This will be the location of your CRM-system. Find the ID of that Google Drive folder. Copy this ID, do not include the backslashes.
 ![How to find ID for folder](images/teamDriveId.png) <br/>
 
-Go to the script called setUpCRM.gs, and add the ID to **DRIVE_FOLDER_ID**, add the ID between quotationmarks. <br/>
+Go to the script called setUpCRM.gs, and add the ID to **DRIVE_FOLDER_ID**, add the ID between quotationmarks.
 ![Where to add folder ID](images/addFolderId.png) <br/>
 
 Remember to not delete or overwrite the qoutationmakrs and save the script. <br/>
 
 ### Step 4: Try to run setupCRM() function
-Be sure all scripts are saved. When you've added ID for destination folder and for list of initial candidates make sure you are in the setUpCRM.gs file and click **Run > Run function > setUpCRM**. <br/>
+Be sure all scripts are saved. When you've added ID for destination folder and for list of initial candidates make sure you are in the setUpCRM.gs file and click **Run > Run function > setUpCRM**.
 ![Run setUpCRM function](images/setUpFunction.png) <br/>
 
-NB: You may be asked to review [authorization](https://developers.google.com/apps-script/guides/services/advanced), see picture below. <br/>
+NB: You may be asked to review [authorization](https://developers.google.com/apps-script/guides/services/advanced), see picture below.
 ![Authorization](images/authorizationRequired.png) <br/>
 
-If you can not find the function setupCRM() you might be in the wrong file. The CRM system is not a published app nor is it verified by google, therefore google needs permission to run the app. More information [here](https://developers.google.com/apps-script/guides/services/advanced). Click review permission and allow. <br/>
+If you can not find the function setupCRM() you might be in the wrong file. The CRM system is not a published app nor is it verified by google, therefore google needs permission to run the app. More information [here](https://developers.google.com/apps-script/guides/services/advanced). Click review permission and allow.
 ![Allow authorization](images/authorizationAllow.png) <br/>
 
-Now Google will tell you that the CRM system is not an app verified by them. Click **Advanced > Go to CRM(unsafe)** <br/>
+Now Google will tell you that the CRM system is not an app verified by them. Click **Advanced > Go to CRM(unsafe)**
 ![App is not verified by google](images/errorNotVerified.png) <br/>
 
 ### Step 5: Run setUpCRM() function again
 After reviewing permission and allowing the CRM system access and approving that you know and trust the app/developer you need to run the setUpCRM function once more. <br/>
 
-Make sure you are in the setUpCRM.gs file and click **Run > Run function > setUpCRM**. If you can not find the function **setupCRM()** you might be in the wrong file. <br/>
+Make sure you are in the setUpCRM.gs file and click **Run > Run function > setUpCRM**. If you can not find the function **setupCRM()** you might be in the wrong file.
 ![Run setUpCRM function](images/setUpFunction.png) <br/>
 
 If there are multiple crm-versions in the destination folder, you should remove all older versions and only run the newest one. <br/> 
@@ -111,29 +109,29 @@ There are currently two versions of this code. One in Google App Script (based o
 Here is a [link](https://github.com/EANorwayService/CRM_setup_advanced) for the code in TypeScript, use this for easier customizability and local development. Use [clasp](https://github.com/google/clasp/) to upload code to Google App Script. 
 
 ### Folder structure
-The CRM system consists of two spreadsheets (named "CRM Main" and "CRM Key"), a folder with separate folders for each registrered candidate and a folder with document templates. <br/>
+The CRM system consists of two spreadsheets (named "CRM Main" and "CRM Key"), a folder with separate folders for each registrered candidate and a folder with document templates.
 ![Structure of folders](images/folderStructure.png) <br/>
 
-Inside the folder "CRM Candidate Folders" there is one folder for each candidate. In this example the candidates have code names. <br/>
+Inside the folder "CRM Candidate Folders" there is one folder for each candidate. In this example the candidates have code names.
 ![Structure of candidate folder](images/folderStructureCandidates.png) <br/>
 
 ### Candidate folder
-In each candidate folder there is a folder with meeting notes and one may store other documents specific to that candidate. There is a link to the candiate folder in the Metrics sheet and in the Candidate sheets. <br/> 
+In each candidate folder there is a folder with meeting notes and one may store other documents specific to that candidate. There is a link to the candiate folder in the Metrics sheet and in the Candidate sheets.
 ![Candidate folder](images/folderStructureCandidateFolder.png) <br/> 
 
 ### Meetings folder
-Notes from all meetings that you have on a candidate are saved in the meetings folder. These notes are created automatically when a new meeting is planned. <br/>
+Notes from all meetings that you have on a candidate are saved in the meetings folder. These notes are created automatically when a new meeting is planned.
 ![Folder with meeting notes for each candidate](images/meetingsFolder.png) <br/> 
 
 ### Meeting notes
-This is an example of how meeting notes can look. If you want to change the template for meeting notes you can do it after the system has been set up, see insturctions in the [faq](#faq). <br/>
+This is an example of how meeting notes can look. If you want to change the template for meeting notes you can do it after the system has been set up, see insturctions in the [faq](#faq).
 ![Notes for a planned meeting](images/newMeetingDoc.png) <br/>
 
 ### "CRM Key" spreadsheet
 The CRM Key is one of two spreadsheets in the CRM system. This spreadsheet contains contact information of candidates and should be stored in a safe place with strict access only for those who need it. At default it consists of only one sheet, but other sheets with sensistive information like sheets linked to forms could also be stored here. EA Norway has two additional sheets here, "Onboarding Form" and "Evaluation Form". <br/>
 
 #### Key sheet
-This sheet makes it possible to give candidates code names so that you don't need to use their actual name throughout the system to protect their identity. However, if you don’t want to use code names, you can use their actual names in the code name column. <br/>
+This sheet makes it possible to give candidates code names so that you don't need to use their actual name throughout the system to protect their identity. However, if you don’t want to use code names, you can use their actual names in the code name column.
 ![The CRM Key sheet](images/sheetKey.png) <br/>
 
 #### Evaluation Form 
@@ -148,31 +146,31 @@ The evalutation form is not added by default, but you can add it by following th
 The CRM Main spreadsheet is the second, and most central spredsheet of the system. This will be the sheet you are using most often and it provides you with an overview of results from your 1:1 meetings. With some basic understanding of spreadsheets you can add your own metrics to track. <br/>
 
 #### Dashboard
-This is the first sheet of the CRM Main spreadsheet and provides you with an aggregated data for all active candidates. Information in the spreadsheet is updated automatically here when changed in the candidate sheets. This sheet is meant to be read only. <br/>
+This is the first sheet of the CRM Main spreadsheet and provides you with an aggregated data for all active candidates. Information in the spreadsheet is updated automatically here when changed in the candidate sheets. This sheet is meant to be read only.
 ![Dashboard sheet](images/sheetDashboard.png) <br/>
 
 #### Metrics
-This sheet contains information on all candidates, one person per row. By using filters it is possible to select a subset to look for specific information of eye ball a distribution. Information is added and updated automatically in this sheet. This sheet is meant to be read only. <br/>
+This sheet contains information on all candidates, one person per row. By using filters it is possible to select a subset to look for specific information of eye ball a distribution. Information is added and updated automatically in this sheet. This sheet is meant to be read only.
 ![Metrics sheet](images/sheetMetrics.png) <br/>
 
 #### Planner
-This sheet shows an overview of previous meeting and planned meeting of each candidate. The information is fetched form the candidate sheets and this sheet is meant to be read only. <br/>
+This sheet shows an overview of previous meeting and planned meeting of each candidate. The information is fetched form the candidate sheets and this sheet is meant to be read only.
 ![Planner sheet](images/sheetPlanner.png) <br/>
 
 #### Candidate sheets
-Each candidate has their own candidate sheet, and a new sheet is created each time a new candidate is added. This is an example for a candidate sheet for a candidate with the code name "Chicken Iris". These sheets are automatically created when a candidate is added. <br/>
+Each candidate has their own candidate sheet, and a new sheet is created each time a new candidate is added. This is an example for a candidate sheet for a candidate with the code name "Chicken Iris". These sheets are automatically created when a candidate is added.
 ![Example of candidate sheet](images/sheetCandidates.png) <br/>
 
 #### Dashboard Historical Data (_hidden in spreadsheet_)
-This sheet stores historical data from the Dashboard sheet, by adding a snapshot of all information from the Dashboard sheet once a week. Only used for calculation purposes and should not be edited it you are very sure of what you are doing. <br/>
+This sheet stores historical data from the Dashboard sheet, by adding a snapshot of all information from the Dashboard sheet once a week. Only used for calculation purposes and should not be edited it you are very sure of what you are doing.
 ![Dashboard Historical Data](images/sheetDashboardHistoricalData.png) <br/>
 
 #### Meetings Historical Data (_hidden in spreadsheet_)
-This sheet saves information from all planned meetings, updates automatically when a meeting is added. Only used for calculation purposes and should not be edited it you are very sure of what you are doing. <br/>
+This sheet saves information from all planned meetings, updates automatically when a meeting is added. Only used for calculation purposes and should not be edited it you are very sure of what you are doing.
 ![Meetings sheet](images/sheetMeetingsHist.png) <br/>
 
 #### Metrics Historical Data (_hidden in spreadsheet_)
-This sheet saves historical information on all candidates. By automatically adding a snapshot of all information from each candidate sheet once a week. Only used for calculation purposes and should not be edited it you are very sure of what you are doing. <br/>
+This sheet saves historical information on all candidates. By automatically adding a snapshot of all information from each candidate sheet once a week. Only used for calculation purposes and should not be edited it you are very sure of what you are doing.
 ![Metrics Historical Date](images/sheetMetricsHistoricalData.png) <br/>
 
 
@@ -181,22 +179,22 @@ This sheet saves historical information on all candidates. By automatically addi
 ### Add candidates
 Start in the Key spreadsheet. You may use code names for the candidates, instead of their real names, to mask their identity. A good tool for generating random code names is www.codenamegenerator.com. If you don't want to use code names, you can use the candidates' real names in the code name-column of the Key sheet. <br/>
 
-After you have added code names click **CRM > Add candidates** in the Google Sheet Menu. Only candidates with text in the code names column will be added to the system. The script assumes values in column B(from cell B3) are code names. If you want to use candidates' real names add their  names to column B instead of code names. <br/>
+After you have added code names click **CRM > Add candidates** in the Google Sheet Menu. Only candidates with text in the code names column will be added to the system. The script assumes values in column B(from cell B3) are code names. If you want to use candidates' real names add their  names to column B instead of code names.
 ![Example of codenames](images/keySheet.png) <br/>
 
-In the example above Pernille and Kari would not be added as candidates since nothing is written in the Code Name column (no value in column B). After you have added code names click **CRM > Add candidates**. Only members/candidates with code names will be added to the system. <br/>
+In the example above Pernille and Kari would not be added as candidates since nothing is written in the Code Name column (no value in column B). After you have added code names click **CRM > Add candidates**. Only members/candidates with code names will be added to the system.
 ![Update candidates](images/addCandidates.png) <br/>
 
 When candidates are added, each one will have their own subfolder in the folder "CRM Candidate Folders". They also get their own sheet in the CRM Main spreadsheet, and their information is linked in the Metrics overview sheet. The names of the candidate folders and candidate sheets can only be changed if the code name is changed everywhere at once (inlcuding the hidden Metrics Historical Data sheet and the hidden Meetings Historical Data sheet). <br/>
 
 ### Add metrics for candidates 
-These are the metrics EA Norway use and they are added to each candidate sheet. See this [guide](https://github.com/EANorwayService/CRM_setup_advanced#aboutCode) if you want to change the metrics. <br/>
+These are the metrics EA Norway use and they are added to each candidate sheet. See this [guide](https://github.com/EANorwayService/CRM_setup_advanced#aboutCode) if you want to change the metrics.
 ![Metrics candidate sheet](images/metricsCandidate.png) <br/>
 
 The Metrics with white background can be set here, but those with grey background are read only and should not be altered directly. <br/>
 
 ### Plan meetings and create meeting notes
-Go to the candidate sheet of the candidate you plan to meet. <br/>
+Go to the candidate sheet of the candidate you plan to meet.
 ![Plan new meeting](images/addMeeting.png) <br/>
 
 If you choose "Plan new meeting", meeting notes are created automatically from the meeting notes template and added to the candidate's folder. If you want to add a meeting you allready had, choose "Add previous meeting" instead. Provide the date of your meeting and url to your meeting notes. <br/>
@@ -204,40 +202,40 @@ If you choose "Plan new meeting", meeting notes are created automatically from t
 To replace the meeting notes template see instructions in the [faq](#faq). Information about meetings will be added to the hidden sheet "Meetings Historical Data" for certain background handling. <br/>
 
 ### Add actionables to meeting notes
-If your meeting notes have a table, the code will assume that the last table is a list of actionables and will be added to the candidate's folder. This is how it looks in exisitng template: <br/>
+If your meeting notes have a table, the code will assume that the last table is a list of actionables and will be added to the candidate's folder. This is how it looks in exisitng template:
 ![Actionables in meeting notes](images/actionablesMeetingNotes.png) <br/>
 Actionables from previous meetings will be added to the candidate sheet as well as the notes of the upcoming meeting (added on the day of the upcoming meeting). <br/>
 
 ### Set candidates as active/inactive
-To set a candidate as inactive simply change the variable in the candidate sheet. <br/>
+To set a candidate as inactive simply change the variable in the candidate sheet.
 ![Varibale active inactive in the candidate sheet](images/statusActiveInactive.png) <br/>
 
-Change status of candidate <br/>
+Change status of candidate
 ![Choose active or inactive](images/activeInactive.png) <br/>
 
 When the system is updated after a candidate is set as "inactive" their sheet will be hidden. When a candidate is inactive their information will not be counted in Dashboard, but for the number of meetings held, which are still counted. <br/>
 To set a candidate back to active you can unhide the sheet and switch back to active. If you only unhide the sheet, it will be hidden again when system updates. 
 
 ### Update system
-Updating the system after adding, removing og changing data in it is unfortunately not done automatically, but for once every night at 5am. The "Update Everything" function wil check for new inactive candidates, fills the next five meetings in the dashboard, fills previous meeting and upcoming meeting in candidates sheet and check for new candiates to add. <br/>
+Updating the system after adding, removing og changing data in it is unfortunately not done automatically, but for once every night at 5am. The "Update Everything" function wil check for new inactive candidates, fills the next five meetings in the dashboard, fills previous meeting and upcoming meeting in candidates sheet and check for new candiates to add.
 ![Update everything in system](images/updateEverything.png) <br/>
 
 # Troubleshoot <a name="troubleshoot"></a>
 
 ### No items with the given ID could be found
-![Error if IDs are wrong](images/errorNoIds.png) <br/>
+![Error if IDs are wrong](images/errorNoIds.png)
 This error means that one of the id's are wrong. It is probably the ID for the destination folder that is missing. <br/>
 
 ### Invalid argument: parent
-![Error if the folder is not a folder](images/errorNotFolder.png) <br/>
+![Error if the folder is not a folder](images/errorNotFolder.png)
 This means that an ID for a folder is the ID for something else than a folder. Check again that the ID for the destination folder is correct. <br/>
 
 ### Access denied DriveApp
-![Error if access is missing](images/errorWrongMemberlist.png) <br/>
+![Error if access is missing](images/errorWrongMemberlist.png)
 This means that you don't have access to, or that the ID to a file is wrong. Check again that the Id for the member list is correct and that you have access to all template files. <br/>
 
 ### We're sorry a server error occurred
-![Error if a file ID is missing](images/errorNoMemberlist.png) <br/>
+![Error if a file ID is missing](images/errorNoMemberlist.png)
 This probably means that an ID for a file is missing, check again that you added the ID for the member list. <br/>
 
 ### If it is not the member list ID and not the destination folder ID:
